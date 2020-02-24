@@ -1,5 +1,4 @@
 package com.company;
-
 import java.awt.BorderLayout;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
@@ -14,12 +13,9 @@ import org.jfree.chart.JFreeChart;
 import org.jfree.data.xy.XYSeries;
 import org.jfree.data.xy.XYSeriesCollection;
 import com.fazecast.jSerialComm.SerialPort;
-
 public class Main {
-
     static SerialPort chosenPort;
     static int x = 0;
-
     public static void main(String[] args) {
         JFrame window = new JFrame();
         window.setTitle("Sensor Graph GUI");
@@ -33,8 +29,10 @@ public class Main {
         topPanel.add(connectButton);
         window.add(topPanel, BorderLayout.NORTH);
         SerialPort[] portNames = SerialPort.getCommPorts();
+        
         for(int i = 0; i < portNames.length; i++)
             portList.addItem(portNames[i].getSystemPortName());
+        
         XYSeries series = new XYSeries("Light Sensor Readings");
         XYSeriesCollection dataset = new XYSeriesCollection(series);
         JFreeChart chart = ChartFactory.createXYLineChart("Sensor Readings", "Time (seconds)", "ADC Reading", dataset);
